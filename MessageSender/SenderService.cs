@@ -2,7 +2,7 @@
 
 namespace MessageSender
 {
-    public class SenderUtility
+    public class SenderService
     {
         private readonly ServiceBusClient _client;
 
@@ -14,7 +14,7 @@ namespace MessageSender
         private readonly string _queueName;
         private readonly ServiceBusClientOptions _options;
 
-        public SenderUtility(string connectionString, string queueName)
+        public SenderService(string connectionString, string queueName)
         {
 
             _connectionString = connectionString;

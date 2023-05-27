@@ -2,7 +2,7 @@
 
 namespace MessageReceiver
 {
-    public class ReceiverUtility
+    public class ReceiverService
     {
         private readonly ServiceBusClient _client;
 
@@ -13,7 +13,7 @@ namespace MessageReceiver
         private readonly string _queueName;
         private readonly ServiceBusClientOptions _options;
 
-        public ReceiverUtility(string connectionString, string queueName)
+        public ReceiverService(string connectionString, string queueName)
         {
             _connectionString = connectionString;
             _queueName = queueName;
@@ -27,7 +27,7 @@ namespace MessageReceiver
 
         public async Task<int> ReceiveMessageAsync(string destinationFolder)
         {
-            //delay is intention to send message first in the queue
+            //delay is intentional to send message first in the queue
             Thread.Sleep(1000);
             int noOfMessageProcessed = 0;
             try
@@ -69,13 +69,12 @@ namespace MessageReceiver
             await File.WriteAllBytesAsync(filePath, Convert.FromBase64String(message.Body.ToString()));
 
             // Perform further processing on the file as needed
-            // For example, you can call a method to handle the file:
             await HandleFileAsync(filePath);
         }
 
         private async Task HandleFileAsync(string filePath)
         {
-            // Implement your logic to process the file here
+            // Some logic to process the file here
             await Task.Delay(10); // Simulating file processing time
             Console.WriteLine($"Processed file: {filePath}");
         }
